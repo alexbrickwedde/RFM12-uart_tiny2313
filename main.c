@@ -9,6 +9,7 @@
 #ifndef cbi
 #define cbi(sfr, bit)     (_SFR_BYTE(sfr) &= ~_BV(bit))
 #endif
+
 #ifndef sbi
 #define sbi(sfr, bit)     (_SFR_BYTE(sfr) |= _BV(bit))
 #endif
@@ -270,7 +271,7 @@ uint16_t rfm12_get_status(void) {
 /********************** main code below *******************/
 
 int main(void) {
-	unsigned int xxxx = ((7372800+BAUD*8)/(BAUD*16)-1);
+	unsigned int xxxx = ((14745600+BAUD*8)/(BAUD*16)-1);
 	UBRRH = xxxx >> 8;
 	UBRRL = xxxx & 0xFF;
 

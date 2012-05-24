@@ -45,13 +45,13 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-rfm12-uart.lss \
+RFM12-uart_tiny2313.lss \
 
 FLASH_IMAGE += \
-rfm12-uart.hex \
+RFM12-uart_tiny2313.hex \
 
 EEPROM_IMAGE += \
-rfm12-uart.eep \
+RFM12-uart_tiny2313.eep \
 
 SIZEDUMMY += \
 sizedummy \
@@ -61,49 +61,49 @@ avrdudedummy \
 
 
 # All Target
-all: rfm12-uart.elf secondary-outputs
+all: RFM12-uart_tiny2313.elf secondary-outputs
 
 # Tool invocations
-rfm12-uart.elf: $(OBJS) $(USER_OBJS)
+RFM12-uart_tiny2313.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C++ Linker'
-	avr-g++ -Wl,-Map,rfm12-uart.map,--cref -mmcu=attiny2313 -o "rfm12-uart.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-g++ -Wl,-Map,RFM12-uart_tiny2313.map,--cref -mmcu=attiny2313 -o "RFM12-uart_tiny2313.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-rfm12-uart.lss: rfm12-uart.elf
+RFM12-uart_tiny2313.lss: RFM12-uart_tiny2313.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S rfm12-uart.elf  >"rfm12-uart.lss"
+	-avr-objdump -h -S RFM12-uart_tiny2313.elf  >"RFM12-uart_tiny2313.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-rfm12-uart.hex: rfm12-uart.elf
+RFM12-uart_tiny2313.hex: RFM12-uart_tiny2313.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -O ihex rfm12-uart.elf  "rfm12-uart.hex"
+	-avr-objcopy -R .eeprom -O ihex RFM12-uart_tiny2313.elf  "RFM12-uart_tiny2313.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-rfm12-uart.eep: rfm12-uart.elf
+RFM12-uart_tiny2313.eep: RFM12-uart_tiny2313.elf
 	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex rfm12-uart.elf  "rfm12-uart.eep"
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex RFM12-uart_tiny2313.elf  "RFM12-uart_tiny2313.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: rfm12-uart.elf
+sizedummy: RFM12-uart_tiny2313.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=attiny2313 rfm12-uart.elf
+	-avr-size --format=avr --mcu=attiny2313 RFM12-uart_tiny2313.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
-avrdudedummy: rfm12-uart.elf
+avrdudedummy: RFM12-uart_tiny2313.elf
 	@echo 'Invoking: AVRDude'
-	C:\WinAVR-20100110\bin\avrdude -pt2313 -cusbasp -u -Uflash:w:rfm12-uart.hex:a -Ulfuse:w:0xde:m -Uhfuse:w:0xdf:m -Uefuse:w:0xff:m
+	C:\WinAVR-20100110\bin\avrdude -pt2313 -cusbasp -u -Uflash:w:RFM12-uart_tiny2313.hex:a -Ulfuse:w:0xde:m -Uhfuse:w:0xdf:m -Uefuse:w:0xff:m
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(EEPROM_IMAGE)$(ELFS)$(FLASH_IMAGE)$(LSS)$(S_DEPS)$(CXX_DEPS)$(S_UPPER_DEPS)$(C++_DEPS)$(ASM_DEPS)$(CC_DEPS)$(AVRDUDEDUMMY)$(CPP_DEPS)$(C_UPPER_DEPS)$(SIZEDUMMY) rfm12-uart.elf
+	-$(RM) $(OBJS)$(C_DEPS)$(EEPROM_IMAGE)$(ELFS)$(FLASH_IMAGE)$(LSS)$(S_DEPS)$(CXX_DEPS)$(S_UPPER_DEPS)$(C++_DEPS)$(ASM_DEPS)$(CC_DEPS)$(AVRDUDEDUMMY)$(CPP_DEPS)$(C_UPPER_DEPS)$(SIZEDUMMY) RFM12-uart_tiny2313.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY) $(AVRDUDEDUMMY)
