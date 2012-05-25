@@ -97,7 +97,7 @@ sizedummy: RFM12-uart_tiny2313.elf
 
 avrdudedummy: RFM12-uart_tiny2313.elf
 	@echo 'Invoking: AVRDude'
-	C:\WinAVR-20100110\bin\avrdude -pt2313 -cusbasp -u -Uflash:w:RFM12-uart_tiny2313.hex:a -Ulfuse:w:0xde:m -Uhfuse:w:0xdf:m -Uefuse:w:0xff:m
+	/usr/bin/avrdude -pt2313 -cusbasp -u -Uflash:w:RFM12-uart_tiny2313.hex:a -Ulfuse:w:0xcf:m -Uhfuse:w:0xdf:m -Uefuse:w:0xff:m
 	@echo 'Finished building: $@'
 	@echo ' '
 

@@ -266,7 +266,7 @@ uint16_t rfm12_get_status(void) {
 	return r;
 }
 
-#define BAUD 19200
+#define BAUD 38400
 
 /********************** main code below *******************/
 
